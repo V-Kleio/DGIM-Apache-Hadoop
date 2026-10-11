@@ -1,0 +1,17 @@
+services:
+  hadoop:
+    build: ./docker
+    image: dgim-hadoop:3.3.6
+    container_name: dgim-hadoop
+    hostname: hadoop
+    ports:
+      - "9870:9870"    # HDFS NameNode UI
+      - "8088:8088"    # YARN ResourceManager UI
+      - "19888:19888"  # MapReduce JobHistory UI
+    volumes:
+      - ./:/project
+      - hadoop-data:/hadoop-data
+    mem_limit: 6g
+
+volumes:
+  hadoop-data:
